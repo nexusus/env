@@ -48,7 +48,9 @@ app.post('/', secureEndpoint, async (req, res) => {
     try {
         const response = await fetch(REAL_WEBHOOK_URL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json',
+                     'User-Agent': 'Agent-E'
+                     },
             body: JSON.stringify(payload)
         });
         if (!response.ok) throw new Error(`Discord API Error: ${response.status}`);
