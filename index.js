@@ -71,7 +71,9 @@ app.patch('/edit', secureEndpoint, async (req, res) => {
     try {
         const response = await fetch(editUrl, {
             method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json',
+                     'User-Agent': 'Agent-E'
+                     },
             body: JSON.stringify(payload)
         });
         if (!response.ok) throw new Error(`Discord API Error: ${response.status}`);
