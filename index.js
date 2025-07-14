@@ -46,6 +46,7 @@ const secureEndpoint = (req, res, next) => {
 app.post('/', secureEndpoint, async (req, res) => {
     const { payload } = req.body;
     try {
+        console.log("--> PROXY IS SENDING THIS PAYLOAD TO DISCORD:", JSON.stringify(payload, null, 2));
         const response = await fetch(REAL_WEBHOOK_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json',
@@ -69,6 +70,7 @@ app.patch('/edit', secureEndpoint, async (req, res) => {
     }
     const editUrl = `${REAL_WEBHOOK_URL}/messages/${messageId}`;
     try {
+        console.log("--> PROXY IS EDITING WITH THIS PAYLOAD:", JSON.stringify(payload, null, 2));
         const response = await fetch(editUrl, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json',
